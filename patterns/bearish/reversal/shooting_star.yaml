@@ -1,0 +1,63 @@
+id: shooting_star
+name: Shooting Star
+category: bearish
+subcategory: reversal
+type: essential
+probability: moderate
+
+structure:
+  candles: 1
+  requirements:
+    - candle:
+        index: 0
+        trend: uptrend_required
+        body_size: small
+        color: any
+        upper_shadow: long
+        lower_shadow: short
+
+parameters:
+  min_body_ratio: 0.05
+  max_body_ratio: 0.30
+  shadow_ratio: 2.0  # upper shadow >= 2x body
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: uptrend
+    min_lookback: 3
+  volume:
+    recommended: true
+    description: "Higher volume on shooting star increases reliability"
+
+visual:
+  ascii: |
+    ┌─┐
+    │ │  ← Long upper shadow (>= 2x body)
+    │ │
+    └─┘
+    ┌─┐
+    │ │  ← Small body (bottom of range)
+    └─┘
+
+signal:
+  direction: bearish
+  action: sell
+  stop_loss: above_shooting_star_high
+  target: recent_swing_low
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - single-candle
+  - bearish
+  - shooting-star
+  - uptrend
+  - upper-shadow

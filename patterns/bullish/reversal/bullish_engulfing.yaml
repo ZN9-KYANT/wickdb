@@ -1,0 +1,65 @@
+id: bullish_engulfing
+name: Bullish Engulfing
+category: bullish
+subcategory: reversal
+type: essential
+probability: high
+
+structure:
+  candles: 2
+  requirements:
+    - candle:
+        index: 0
+        trend: downtrend_required
+        body_size: medium
+        color: bearish
+    - candle:
+        index: 1
+        body_size: large
+        color: bullish
+        close_into_candle_0: true
+
+parameters:
+  min_body_ratio: 0.10
+  max_body_ratio: 0.50
+  large_body_ratio: 0.60
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: downtrend
+    min_lookback: 3
+  volume:
+    recommended: true
+    description: "Volume on candle 2 should exceed candle 1 for confirmation"
+
+visual:
+  ascii: |
+    ┌───┐
+    │███│  ← Candle 1: large bullish, engulfs candle 0
+    │███│
+    └───┘
+    ┌───┐
+    │▓▓▓│  ← Candle 0: bearish (downtrend)
+    └───┘
+
+signal:
+  direction: bullish
+  action: buy
+  stop_loss: below_candle_1_low
+  target: recent_swing_high
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - two-candle
+  - bullish
+  - engulfing
+  - downtrend

@@ -1,0 +1,72 @@
+id: evening_star
+name: Evening Star
+category: bearish
+subcategory: reversal
+type: essential
+probability: moderate
+
+structure:
+  candles: 3
+  requirements:
+    - candle:
+        index: 0
+        trend: uptrend_required
+        body_size: large
+        color: bullish
+    - candle:
+        index: 1
+        body_size: small
+        gap_up: true
+        color: any
+    - candle:
+        index: 2
+        body_size: large
+        color: bearish
+        close_into_candle_0: true
+
+parameters:
+  min_body_ratio: 0.05
+  max_body_ratio: 0.30
+  large_body_ratio: 0.60
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: uptrend
+    min_lookback: 5
+  volume:
+    recommended: true
+    description: "Volume should increase on candle 3 for confirmation"
+
+visual:
+  ascii: |
+    ┌───┐
+    │▓▓▓│  ← Candle 0: large bullish (uptrend)
+    └───┘
+    ┌─┐
+    │ │  ← Candle 1: small body (star)
+    └─┘
+    ┌───┐
+    │███│  ← Candle 2: large bearish, closes into candle 0
+    └───┘
+
+signal:
+  direction: bearish
+  action: sell
+  stop_loss: above_candle_1_high
+  target: recent_swing_low
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - three-candle
+  - bearish
+  - evening-star
+  - uptrend

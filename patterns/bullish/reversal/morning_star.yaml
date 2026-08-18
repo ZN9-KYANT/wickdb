@@ -1,0 +1,72 @@
+id: morning_star
+name: Morning Star
+category: bullish
+subcategory: reversal
+type: essential
+probability: moderate
+
+structure:
+  candles: 3
+  requirements:
+    - candle:
+        index: 0
+        trend: downtrend_required
+        body_size: large
+        color: bearish
+    - candle:
+        index: 1
+        body_size: small
+        gap_down: true
+        color: any
+    - candle:
+        index: 2
+        body_size: large
+        color: bullish
+        close_into_candle_0: true
+
+parameters:
+  min_body_ratio: 0.05
+  max_body_ratio: 0.30
+  large_body_ratio: 0.60
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: downtrend
+    min_lookback: 5
+  volume:
+    recommended: true
+    description: "Volume should increase on candle 3 for confirmation"
+
+visual:
+  ascii: |
+    ┌─┐
+    │ │  ← Candle 1: small body (star)
+    └─┘
+    ┌───┐
+    │███│  ← Candle 2: large bullish, closes into candle 0
+    └───┘
+    ┌───┐
+    │▓▓▓│  ← Candle 0: large bearish (downtrend)
+    └───┘
+
+signal:
+  direction: bullish
+  action: buy
+  stop_loss: below_candle_1_low
+  target: recent_swing_high
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - three-candle
+  - bullish
+  - morning-star
+  - downtrend

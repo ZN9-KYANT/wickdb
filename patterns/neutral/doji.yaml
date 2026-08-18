@@ -1,0 +1,55 @@
+id: doji
+name: Doji
+category: neutral
+subcategory: indecision
+type: essential
+probability: low
+
+structure:
+  candles: 1
+  requirements:
+    - candle:
+        index: 0
+        body_size: small
+        color: any
+        doji: true
+
+parameters:
+  min_body_ratio: 0.0
+  max_body_ratio: 0.05  # body <= 5% of range = doji
+  shadow_ratio: 0.0
+
+context:
+  prior_trend:
+    required: false
+  volume:
+    recommended: false
+
+visual:
+  ascii: |
+    ┌─┐
+    │ │  ← Upper shadow
+    └─┘
+    │ │  ← Tiny body (or none)
+    ┌─┐
+    │ │  ← Lower shadow
+    └─┘
+
+signal:
+  direction: neutral
+  action: hold
+  stop_loss: ""
+  target: ""
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - indecision
+  - single-candle
+  - neutral
+  - doji

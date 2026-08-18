@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/zunku/candledb/blob/main/schemas/pattern.schema.json",
+  "title": "Candlestick Pattern Definition",
+  "description": "Schema for a single candlestick (k-line) pattern in the CandleDB database.",
+  "type": "object",
+  "required": ["id", "name", "category", "type", "structure", "signal"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique pattern identifier (snake_case)",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "examples": ["morning_star", "bullish_engulfing"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable pattern name",
+      "examples": ["Morning Star", "Bullish Engulfing"]
+    },
+    "category": {
+      "type": "string",
+      "enum": ["bullish", "bearish", "neutral"]
+    },
+    "subcategory": {
+      "type": "string",
+      "enum": ["reversal", "continuation", "indecision"]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["essential", "unique", "rare", "experimental"],
+      "description": "Classification tier"
+    },
+    "probability": {
+      "type": "string",
+      "enum": ["high", "moderate", "low"],
+      "description": "Reliability of the signal"
+    },
+    "structure": {
+      "type": "object",
+      "required": ["candles", "requirements"],
+      "properties": {
+        "candles": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Number of candles in the pattern"
+        },
+        "requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["candle"],
+            "properties": {
+              "candle": {
+                "type": "object",
+                "required": ["index"],
+                "properties": {
+                  "index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "0-based candle index within the pattern"
+                  },
+                  "trend": {
+                    "type": "string",
+                    "enum": ["uptrend_required", "downtrend_required", "any"]
+                  },
+                  "body_size": {
+                    "type": "string",
+                    "enum": ["large", "medium", "small", "any"]
+                  },
+                  "color": {
+                    "type": "string",
+                    "enum": ["bullish", "bearish", "any"]
+                  },
+                  "gap_up": { "type": "boolean" },
+                  "gap_down": { "type": "boolean" },
+                  "close_into_candle_0": { "type": "boolean" },
+                  "upper_shadow": {
+                    "type": "string",
+                    "enum": ["long", "short", "none", "any"]
+                  },
+                  "lower_shadow": {
+                    "type": "string",
+                    "enum": ["long", "short", "none", "any"]
+                  },
+                  "doji": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Machine-quantifiable thresholds",
+      "properties": {
+        "min_body_ratio": { "type": "number" },
+        "max_body_ratio": { "type": "number" },
+        "large_body_ratio": { "type": "number" },
+        "gap_threshold": { "type": "number" },
+        "shadow_ratio": { "type": "number" }
+      }
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "prior_trend": {
+          "type": "object",
+          "properties": {
+            "required": { "type": "boolean" },
+            "direction": {
+              "type": "string",
+              "enum": ["uptrend", "downtrend", "any"]
+            },
+            "min_lookback": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "volume": {
+          "type": "object",
+          "properties": {
+            "recommended": { "type": "boolean" },
+            "description": { "type": "string" }
+          }
+        }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "properties": {
+        "ascii": { "type": "string" },
+        "svg": { "type": "string" }
+      }
+    },
+    "signal": {
+      "type": "object",
+      "required": ["direction"],
+      "properties": {
+        "direction": {
+          "type": "string",
+          "enum": ["bullish", "bearish", "neutral"]
+        },
+        "action": {
+          "type": "string",
+          "enum": ["buy", "sell", "hold", "watch"]
+        },
+        "stop_loss": { "type": "string" },
+        "target": { "type": "string" }
+      }
+    },
+    "backtest": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["instrument", "timeframe", "win_rate", "sample_size"],
+        "properties": {
+          "instrument": { "type": "string" },
+          "timeframe": { "type": "string" },
+          "win_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+          "sample_size": { "type": "integer", "minimum": 0 },
+          "avg_return_1d": { "type": "number" },
+          "avg_return_3d": { "type": "number" },
+          "avg_return_5d": { "type": "number" },
+          "source": { "type": "string" },
+          "contributor": { "type": "string" },
+          "date": { "type": "string" }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "author": { "type": "string" },
+          "year": { "type": "integer" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
