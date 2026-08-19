@@ -16,7 +16,7 @@ from typing import Optional
 import pandas as pd
 import numpy as np
 
-from candledb.loader import load_patterns
+from wickdb.loader import load_patterns
 
 
 class PatternDB:

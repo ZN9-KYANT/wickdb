@@ -63,7 +63,7 @@ def validate_all(patterns_dir: Optional[str] = None) -> dict:
     Returns:
         Dict with "valid" and "invalid" lists.
     """
-    from candledb.loader import load_patterns
+    from wickdb.loader import load_patterns
 
     patterns = load_patterns(patterns_dir)
     results = {"valid": [], "invalid": []}

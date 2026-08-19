@@ -3,8 +3,8 @@ Tests for pattern loading and validation.
 """
 
 import pytest
-from candledb.loader import load_patterns, load_pattern
-from candledb.validate import validate_pattern
+from wickdb.loader import load_patterns, load_pattern
+from wickdb.validate import validate_pattern
 
 
 class TestPatternLoading:

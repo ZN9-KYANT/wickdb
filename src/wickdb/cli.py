@@ -1,21 +1,21 @@
 """
-CLI interface for CandleDB.
+CLI interface for WickDB.
 
 Usage:
-    candledb list                          # List all patterns
-    candledb list --category bullish       # List bullish patterns
-    candledb detect SPY --days 100         # Detect patterns in SPY
-    candledb detect SPY --pattern hammer   # Detect specific pattern
-    candledb validate                       # Validate all pattern files
-    candledb show morning_star              # Show pattern details
+    wickdb list                          # List all patterns
+    wickdb list --category bullish       # List bullish patterns
+    wickdb detect SPY --days 100         # Detect patterns in SPY
+    wickdb detect SPY --pattern hammer   # Detect specific pattern
+    wickdb validate                       # Validate all pattern files
+    wickdb show morning_star              # Show pattern details
 """
 
 import argparse
 import json
 import sys
 
-from candledb import PatternDB
-from candledb.validate import validate_all
+from wickdb import PatternDB
+from wickdb.validate import validate_all
 
 
 def cmd_list(args):
@@ -106,8 +106,8 @@ def cmd_detect(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="candledb",
-        description="CandleDB — Open-source candlestick pattern database and detection engine",
+        prog="wickdb",
+        description="WickDB — Open-source candlestick pattern database and detection engine",
     )
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
 

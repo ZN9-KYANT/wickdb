@@ -4,7 +4,7 @@ Tests for the pattern detection engine.
 
 import pandas as pd
 import numpy as np
-from candledb import PatternDB
+from wickdb import PatternDB
 
 
 def make_df(opens, highs, lows, closes, volumes=None):

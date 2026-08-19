@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "candledb"
+name = "wickdb"
 version = "0.1.0"
 description = "Open-source candlestick pattern database and detection engine for quantitative analysis"
 readme = "README.md"
@@ -16,6 +16,7 @@ keywords = [
     "candlestick",
     "kline",
     "patterns",
+    "wick",
     "quantitative",
     "finance",
     "trading",
@@ -39,7 +40,7 @@ dev = [
 ]
 
 [project.scripts]
-candledb = "candledb.cli:main"
+wickdb = "wickdb.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
