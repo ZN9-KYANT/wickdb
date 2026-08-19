@@ -1,0 +1,65 @@
+id: gravestone_doji
+name: Gravestone Doji
+category: bearish
+subcategory: reversal
+type: unique
+probability: moderate
+
+structure:
+  candles: 1
+  requirements:
+    - candle:
+        index: 0
+        trend: uptrend_required
+        body_size: small
+        color: any
+        doji: true
+        upper_shadow: long
+        lower_shadow: none
+
+parameters:
+  min_body_ratio: 0.0
+  max_body_ratio: 0.05  # doji body
+  shadow_ratio: 2.0  # upper shadow >= 2x body
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: uptrend
+    min_lookback: 3
+  volume:
+    recommended: true
+    description: "Higher volume on gravestone doji increases reliability"
+
+visual:
+  ascii: |
+    │ │
+    │ │  ← Long upper shadow (>= 2x body)
+    │ │
+    └─┘
+    ┌─┐
+    │ │  ← Open & close at or near the low (doji)
+    └─┘
+
+signal:
+  direction: bearish
+  action: sell
+  stop_loss: above_gravestone_doji_high
+  target: recent_swing_low
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - single-candle
+  - bearish
+  - gravestone-doji
+  - doji
+  - uptrend
+  - upper-shadow

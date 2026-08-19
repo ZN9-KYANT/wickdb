@@ -1,0 +1,59 @@
+id: marubozu_black
+name: Black Marubozu
+category: neutral
+subcategory: continuation
+type: unique
+probability: moderate
+
+structure:
+  candles: 1
+  requirements:
+    - candle:
+        index: 0
+        body_size: large
+        color: bearish
+        upper_shadow: none
+        lower_shadow: none
+
+parameters:
+  min_body_ratio: 0.90  # body >= 90% of range
+  max_body_ratio: 1.0
+  large_body_ratio: 0.90
+
+context:
+  prior_trend:
+    required: false
+  volume:
+    recommended: true
+    description: "High volume strengthens the signal; context-dependent interpretation"
+
+visual:
+  ascii: |
+    ┌───┐
+    │███│  ← Large bearish body fills entire range
+    │███│
+    │███│
+    └───┘
+
+signal:
+  direction: neutral
+  action: watch
+  stop_loss: ""
+  target: ""
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+  - title: "Encyclopedia of Candlestick Charts"
+    author: "Thomas Bulkowski"
+    year: 2008
+
+tags:
+  - continuation
+  - single-candle
+  - neutral
+  - marubozu
+  - marubozu-black

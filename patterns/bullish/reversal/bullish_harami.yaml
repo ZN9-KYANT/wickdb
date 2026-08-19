@@ -1,0 +1,63 @@
+id: bullish_harami
+name: Bullish Harami
+category: bullish
+subcategory: reversal
+type: unique
+probability: moderate
+
+structure:
+  candles: 2
+  requirements:
+    - candle:
+        index: 0
+        trend: downtrend_required
+        body_size: large
+        color: bearish
+    - candle:
+        index: 1
+        body_size: small
+        color: bullish
+
+parameters:
+  min_body_ratio: 0.05
+  max_body_ratio: 0.30
+  large_body_ratio: 0.60
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: downtrend
+    min_lookback: 3
+  volume:
+    recommended: false
+    description: "Volume on candle 1 decreases relative to candle 0"
+
+visual:
+  ascii: |
+    ┌───┐
+    │▓▓▓│  ← Candle 0: large bearish (downtrend)
+    │┌─┐│
+    ││█││  ← Candle 1: small bullish body contained within candle 0
+    │└─┘│
+    └───┘
+
+signal:
+  direction: bullish
+  action: watch
+  stop_loss: below_candle_0_low
+  target: recent_swing_high
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - two-candle
+  - bullish
+  - harami
+  - downtrend

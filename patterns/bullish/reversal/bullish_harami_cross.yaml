@@ -1,0 +1,66 @@
+id: bullish_harami_cross
+name: Bullish Harami Cross
+category: bullish
+subcategory: reversal
+type: unique
+probability: moderate
+
+structure:
+  candles: 2
+  requirements:
+    - candle:
+        index: 0
+        trend: downtrend_required
+        body_size: large
+        color: bearish
+    - candle:
+        index: 1
+        body_size: small
+        color: any
+        doji: true
+
+parameters:
+  min_body_ratio: 0.0
+  max_body_ratio: 0.05  # doji body
+  large_body_ratio: 0.60
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: downtrend
+    min_lookback: 3
+  volume:
+    recommended: false
+    description: "Doji on candle 1 reflects indecision; stronger signal than bullish harami"
+
+visual:
+  ascii: |
+    ┌───┐
+    │▓▓▓│  ← Candle 0: large bearish (downtrend)
+    │┌─┐│
+    ││ ││  ← Candle 1: doji contained within candle 0
+    │└─┘│
+    └───┘
+
+signal:
+  direction: bullish
+  action: watch
+  stop_loss: below_candle_0_low
+  target: recent_swing_high
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - two-candle
+  - bullish
+  - harami
+  - harami-cross
+  - doji
+  - downtrend

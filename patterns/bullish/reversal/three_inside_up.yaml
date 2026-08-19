@@ -1,0 +1,72 @@
+id: three_inside_up
+name: Three Inside Up
+category: bullish
+subcategory: reversal
+type: unique
+probability: moderate
+
+structure:
+  candles: 3
+  requirements:
+    - candle:
+        index: 0
+        trend: downtrend_required
+        body_size: large
+        color: bearish
+    - candle:
+        index: 1
+        body_size: small
+        color: bullish
+    - candle:
+        index: 2
+        body_size: large
+        color: bullish
+        close_into_candle_0: true
+
+parameters:
+  min_body_ratio: 0.05
+  max_body_ratio: 0.30
+  large_body_ratio: 0.60
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: downtrend
+    min_lookback: 5
+  volume:
+    recommended: true
+    description: "Volume should increase on candle 3 for confirmation"
+
+visual:
+  ascii: |
+    ┌───┐
+    │███│  ← Candle 2: bullish, closes above candle 1 close
+    └─┬─┘
+    ┌─┴─┐
+    │▓▓▓│  ← Candle 0: large bearish (downtrend)
+    │┌─┐│
+    ││█││  ← Candle 1: small bullish contained within candle 0
+    │└─┘│
+    └───┘
+
+signal:
+  direction: bullish
+  action: buy
+  stop_loss: below_candle_1_low
+  target: recent_swing_high
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - three-candle
+  - bullish
+  - three-inside-up
+  - harami
+  - downtrend

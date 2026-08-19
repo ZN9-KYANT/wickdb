@@ -1,0 +1,59 @@
+id: spinning_top
+name: Spinning Top
+category: neutral
+subcategory: indecision
+type: unique
+probability: low
+
+structure:
+  candles: 1
+  requirements:
+    - candle:
+        index: 0
+        body_size: small
+        color: any
+        upper_shadow: long
+        lower_shadow: long
+
+parameters:
+  min_body_ratio: 0.05
+  max_body_ratio: 0.30
+  shadow_ratio: 1.0  # both shadows > body
+
+context:
+  prior_trend:
+    required: false
+  volume:
+    recommended: false
+    description: "Low volume common on spinning tops; reflects indecision"
+
+visual:
+  ascii: |
+    │ │
+    │ │  ← Upper shadow (longer than body)
+    └─┘
+    ┌─┐
+    │ │  ← Small body
+    └─┘
+    │ │
+    │ │  ← Lower shadow (longer than body)
+    │ │
+
+signal:
+  direction: neutral
+  action: hold
+  stop_loss: ""
+  target: ""
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - indecision
+  - single-candle
+  - neutral
+  - spinning-top

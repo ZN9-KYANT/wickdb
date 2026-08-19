@@ -1,0 +1,65 @@
+id: dark_cloud_cover
+name: Dark Cloud Cover
+category: bearish
+subcategory: reversal
+type: unique
+probability: moderate
+
+structure:
+  candles: 2
+  requirements:
+    - candle:
+        index: 0
+        trend: uptrend_required
+        body_size: large
+        color: bullish
+    - candle:
+        index: 1
+        body_size: large
+        color: bearish
+        gap_up: true
+        close_into_candle_0: true
+
+parameters:
+  min_body_ratio: 0.10
+  max_body_ratio: 0.50
+  large_body_ratio: 0.60
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: uptrend
+    min_lookback: 3
+  volume:
+    recommended: true
+    description: "Volume on candle 2 should exceed candle 1 for confirmation"
+
+visual:
+  ascii: |
+    ┌───┐
+    │▓▓▓│  ← Candle 0: large bullish (uptrend)
+    └─┬─┘
+    ┌─┴─┐
+    │███│  ← Candle 1: bearish, opens above candle 0 high, closes below midpoint
+    └───┘
+
+signal:
+  direction: bearish
+  action: sell
+  stop_loss: above_candle_1_high
+  target: recent_swing_low
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - two-candle
+  - bearish
+  - dark-cloud-cover
+  - uptrend

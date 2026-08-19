@@ -1,0 +1,67 @@
+id: above_the_stomach
+name: Above the Stomach
+category: bullish
+subcategory: reversal
+type: unique
+probability: moderate
+
+structure:
+  candles: 2
+  requirements:
+    - candle:
+        index: 0
+        trend: downtrend_required
+        body_size: any
+        color: bearish
+    - candle:
+        index: 1
+        body_size: medium
+        color: bullish
+        close_into_candle_0: true
+
+parameters:
+  min_body_ratio: 0.10
+  max_body_ratio: 0.50
+  large_body_ratio: 0.60
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: downtrend
+    min_lookback: 3
+  volume:
+    recommended: true
+    description: "Volume on candle 2 should exceed candle 1 for confirmation"
+
+visual:
+  ascii: |
+    ┌───┐
+    │███│  ← Candle 1: bullish, opens & closes at/above midpoint of candle 0
+    └─┬─┘
+    ┌─┴─┐
+    │▓▓▓│  ← Candle 0: bearish (downtrend)
+    └───┘
+
+signal:
+  direction: bullish
+  action: buy
+  stop_loss: below_candle_1_low
+  target: recent_swing_high
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+  - title: "Encyclopedia of Candlestick Charts"
+    author: "Thomas Bulkowski"
+    year: 2008
+
+tags:
+  - reversal
+  - two-candle
+  - bullish
+  - above-the-stomach
+  - downtrend

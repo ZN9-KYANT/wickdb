@@ -165,7 +165,7 @@ tags:
 
 ## Pattern Catalog
 
-### Tier 1: Essential Patterns (currently 9)
+### Tier 1: Essential Patterns (9)
 
 | Pattern | Category | Candles | Signal | Status |
 |---------|----------|---------|--------|--------|
@@ -179,9 +179,28 @@ tags:
 | Three Black Crows | Bearish / Continuation | 3 | Sell | ✅ |
 | Doji | Neutral / Indecision | 1 | Hold | ✅ |
 
-### Tier 2: Advanced Patterns (planned)
+### Tier 2: Advanced Patterns (15)
 
-Abandoned Baby, Three Inside Up/Down, Three Outside Up/Down, Mat Hold, Rising/Falling Three Methods, Separating Lines, Stick Sandwich, Kicker, Belt Hold, and more.
+| Pattern | Category | Candles | Signal | Win Rate | Status |
+|---------|----------|---------|--------|----------|--------|
+| Inverted Hammer | Bullish / Reversal | 1 | Buy | 60%¹ | ✅ |
+| Piercing Line | Bullish / Reversal | 2 | Buy | — | ✅ |
+| Bullish Harami | Bullish / Reversal | 2 | Buy | 55%¹ | ✅ |
+| Bullish Harami Cross | Bullish / Reversal | 2 | Buy | 55%¹ | ✅ |
+| Three Inside Up | Bullish / Reversal | 3 | Buy | 65%² | ✅ |
+| Above the Stomach | Bullish / Reversal | 2 | Buy | 66%² | ✅ |
+| Dark Cloud Cover | Bearish / Reversal | 2 | Sell | — | ✅ |
+| Bearish Harami | Bearish / Reversal | 2 | Sell | 57%¹ | ✅ |
+| Bearish Harami Cross | Bearish / Reversal | 2 | Sell | 57%¹ | ✅ |
+| Hanging Man | Bearish / Reversal | 1 | Sell | — | ✅ |
+| Dragonfly Doji | Bearish / Reversal | 1 | Sell | 55%² | ✅ |
+| Gravestone Doji | Bearish / Reversal | 1 | Sell | 57%¹ | ✅ |
+| Spinning Top | Neutral / Indecision | 1 | Hold | 56%¹ | ✅ |
+| Black Marubozu | Neutral / Continuation | 1 | Context | 56%¹ | ✅ |
+| White Marubozu | Neutral / Continuation | 1 | Context | — | ✅ |
+
+<sup>1</sup> Liberated Stock Trader — 56,680 trades on 30 DJIA stocks (20 years)
+<sup>2</sup> Thomas Bulkowski — Encyclopedia of Candlestick Charts (4.7M price bars, 103 patterns)
 
 ### Tier 3: Modern/Quant Patterns (planned)
 

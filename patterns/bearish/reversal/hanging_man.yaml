@@ -1,0 +1,63 @@
+id: hanging_man
+name: Hanging Man
+category: bearish
+subcategory: reversal
+type: unique
+probability: low
+
+structure:
+  candles: 1
+  requirements:
+    - candle:
+        index: 0
+        trend: uptrend_required
+        body_size: small
+        color: any
+        lower_shadow: long
+        upper_shadow: short
+
+parameters:
+  min_body_ratio: 0.05
+  max_body_ratio: 0.30
+  shadow_ratio: 2.0  # lower shadow >= 2x body
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: uptrend
+    min_lookback: 3
+  volume:
+    recommended: true
+    description: "Higher volume on hanging man increases reliability"
+
+visual:
+  ascii: |
+    ┌─┐
+    │ │  ← Small body (top of range)
+    └─┘
+    │ │
+    │ │  ← Long lower shadow (>= 2x body)
+    │ │
+    └─┘
+
+signal:
+  direction: bearish
+  action: watch
+  stop_loss: above_hanging_man_high
+  target: recent_swing_low
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - single-candle
+  - bearish
+  - hanging-man
+  - uptrend
+  - lower-shadow

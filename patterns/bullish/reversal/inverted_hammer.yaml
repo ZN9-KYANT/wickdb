@@ -1,0 +1,63 @@
+id: inverted_hammer
+name: Inverted Hammer
+category: bullish
+subcategory: reversal
+type: unique
+probability: low
+
+structure:
+  candles: 1
+  requirements:
+    - candle:
+        index: 0
+        trend: downtrend_required
+        body_size: small
+        color: any
+        upper_shadow: long
+        lower_shadow: short
+
+parameters:
+  min_body_ratio: 0.05
+  max_body_ratio: 0.30
+  shadow_ratio: 2.0  # upper shadow >= 2x body
+  gap_threshold: 0.001
+
+context:
+  prior_trend:
+    required: true
+    direction: downtrend
+    min_lookback: 3
+  volume:
+    recommended: true
+    description: "Higher volume on inverted hammer increases reliability"
+
+visual:
+  ascii: |
+    │ │
+    │ │  ← Long upper shadow (>= 2x body)
+    │ │
+    └─┘
+    ┌─┐
+    │ │  ← Small body (bottom of range)
+    └─┘
+
+signal:
+  direction: bullish
+  action: watch
+  stop_loss: below_inverted_hammer_low
+  target: recent_swing_high
+
+backtest: []
+
+references:
+  - title: "Japanese Candlestick Charting Techniques"
+    author: "Steve Nison"
+    year: 1991
+
+tags:
+  - reversal
+  - single-candle
+  - bullish
+  - inverted-hammer
+  - downtrend
+  - upper-shadow
